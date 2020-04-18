@@ -39,7 +39,7 @@ stages:
             displayName: Docker Build
             inputs:
               filePath: 'build.sh'
-              arguments: $(CI_BUILDID), $(CI_PRERELEASE)
+              arguments: $(CI_BUILDID) $(CI_PRERELEASE)
           - publish: ./out
             displayName: Publish Artifacts
             artifact: NuGetPackage

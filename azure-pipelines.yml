@@ -1,0 +1,23 @@
+trigger:
+  branches:
+    include:
+      - master
+      - develop
+  paths:
+    exclude:
+      - CHANGELOG.md
+      - README.md
+      - LICENSE
+
+resources:
+  - repo: self
+
+pool:
+  vmImage: 'ubuntu-16.04'
+
+steps:
+  - task: Bash@3
+    inputs:
+      filePath: 'build.sh'
+  - publish: ./out
+    artifact: NuGetPackage

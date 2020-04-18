@@ -1,0 +1,12 @@
+<Project>
+    <PropertyGroup>
+        <Title>BetterExtensions</Title>
+        <Authors>iTKerry</Authors>
+        <PackageDescription>BetterExtensions just to make your coding process a little bit better.</PackageDescription>
+        <Copyright>Alex Katrynets</Copyright>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageTags>extensions</PackageTags>
+        <RepositoryUrl>https://github.com/better-open-source/better-extensions</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+    </PropertyGroup>
+</Project>

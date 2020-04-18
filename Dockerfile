@@ -6,15 +6,15 @@ COPY ./BetterExtensions.sln ./
 COPY ./src/BetterExtensions/BetterExtensions.csproj ./src/BetterExtensions/
 COPY ./tests/BetterExtensions.Tests/BetterExtensions.Tests.csproj ./tests/BetterExtensions.Tests/
 
-RUN dotnet restore ./src/BetterExtensions/BetterExtensions.csproj
-RUN dotnet restore ./tests/BetterExtensions.Tests/BetterExtensions.Tests.csproj
+RUN dotnet restore
+COPY . .
 
-COPY ./src/BetterExtensions ./src/BetterExtensions
-COPY ./tests/BetterExtensions.Tests ./tests/BetterExtensions.Tests
+ARG CI_BUILDID
+ARG CI_PRERELEASE
 
-RUN dotnet build -c Release --no-restore "./src/BetterExtensions/BetterExtensions.csproj"
-RUN dotnet build -c Release --no-restore "./tests/BetterExtensions.Tests/BetterExtensions.Tests.csproj"
+ENV CI_BUILDID ${CI_BUILDID}
+ENV CI_PRERELEASE ${CI_PRERELEASE}
 
-RUN dotnet test "./tests/BetterExtensions.Tests/BetterExtensions.Tests.csproj" -c Release --no-build --no-restore
-
-RUN dotnet pack "./src/BetterExtensions/BetterExtensions.csproj" -c Release --no-restore --no-build -o /app/out
+RUN dotnet build -c Release --no-restore
+RUN dotnet test -c Release --no-build --no-restore
+RUN dotnet pack -c Release --no-restore --no-build -o /app/out

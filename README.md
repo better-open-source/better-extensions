@@ -10,7 +10,7 @@ BetterExtensions just to make your coding process a little bit better.
 
 ## Status
 | Branch | Build & Test |
-|---|:---:|
+|---|:---|
 |**master**|[![Build & Test][build-master-badge]][build]| 
 |**develop**|[![Build & Test][build-develop-badge]][build]|
 

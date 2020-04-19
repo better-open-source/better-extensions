@@ -40,4 +40,3 @@ stages:
               arguments: $(CI_BUILDID) $(CI_PRERELEASE)
           - publish: ./out
             displayName: Publish Artifacts
-            artifact: NuGetPackage

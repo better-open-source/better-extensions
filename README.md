@@ -4,7 +4,9 @@
 
 |   | Build & Test |
 |---|:---:|
-|**master**|![Build & Test][build-master]| 
-|**develop**|![Build & Test][build-develop]|
-[build-master]: https://dev.azure.com/better-open-source/better-extensions/_apis/build/status/BetterExtensions?branchName=master
-[build-develop]: https://dev.azure.com/better-open-source/better-extensions/_apis/build/status/BetterExtensions?branchName=develop
+|**master**|[![Build & Test][build-master-badge]][build]| 
+|**develop**|[![Build & Test][build-develop-badge]][build]|
+
+[build-master-badge]: https://dev.azure.com/better-open-source/better-extensions/_apis/build/status/BetterExtensions?branchName=master
+[build-develop-badge]: https://dev.azure.com/better-open-source/better-extensions/_apis/build/status/BetterExtensions?branchName=develop
+[build]: https://dev.azure.com/better-open-source/better-extensions/_build?definitionId=2

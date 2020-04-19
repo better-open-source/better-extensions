@@ -12,10 +12,6 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <VersionPrefix>1.0.0</VersionPrefix>
-    </PropertyGroup>
-
-    <PropertyGroup>
         <LangVersion>8.0</LangVersion>
         <Nullable>enable</Nullable>
     </PropertyGroup>

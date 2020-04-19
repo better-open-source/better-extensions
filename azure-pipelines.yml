@@ -17,7 +17,7 @@ stages:
     jobs:
       - job: Version
         variables:
-          versionPrefixName: 'ci'
+          versionPrefixName: 'beta'
         steps:
           - checkout: none
           - bash: |

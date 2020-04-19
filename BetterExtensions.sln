@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{090EE1B0-8C50-45A3-972F-84AB278B4D6C}"
+ProjectSection(SolutionItems) = preProject
+	Dockerfile = Dockerfile
+	build.sh = build.sh
+	azure-pipelines.yml = azure-pipelines.yml
+	Directory.Build.props = Directory.Build.props
+EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repository Items", "Repository Items", "{FF6FFB0E-0242-4B5A-AE0B-79BC0E4CC68F}"
+ProjectSection(SolutionItems) = preProject
+	LICENSE = LICENSE
+	README.md = README.md
+	CHANGELOG.md = CHANGELOG.md
+EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5128E663-C010-499A-94FB-BEA711CD84F3}"
+ProjectSection(SolutionItems) = preProject
+	src\Directory.Build.props = src\Directory.Build.props
+EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{F2E9A366-5A19-483F-8075-EF87B6BA9982}"
+ProjectSection(SolutionItems) = preProject
+	tests\Directory.Build.props = tests\Directory.Build.props
+EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetterExtensions", "src\BetterExtensions\BetterExtensions.csproj", "{6F3A1547-801C-4F70-AD77-B78AF4E96C28}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetterExtensions.Tests", "tests\BetterExtensions.Tests\BetterExtensions.Tests.csproj", "{1354BF2F-47E4-456B-9E28-E6403923A3F2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6F3A1547-801C-4F70-AD77-B78AF4E96C28} = {5128E663-C010-499A-94FB-BEA711CD84F3}
+		{1354BF2F-47E4-456B-9E28-E6403923A3F2} = {F2E9A366-5A19-483F-8075-EF87B6BA9982}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6F3A1547-801C-4F70-AD77-B78AF4E96C28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F3A1547-801C-4F70-AD77-B78AF4E96C28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F3A1547-801C-4F70-AD77-B78AF4E96C28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F3A1547-801C-4F70-AD77-B78AF4E96C28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1354BF2F-47E4-456B-9E28-E6403923A3F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1354BF2F-47E4-456B-9E28-E6403923A3F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1354BF2F-47E4-456B-9E28-E6403923A3F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1354BF2F-47E4-456B-9E28-E6403923A3F2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

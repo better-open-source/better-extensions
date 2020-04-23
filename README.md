@@ -15,7 +15,7 @@ BetterExtensions just to make your coding process a little bit better.
 
 ## Installation
 
-Available on [NuGet][nuget]
+Available on [NuGet][nuget].
 
 	PM> Install-Package BetterExtensions
 

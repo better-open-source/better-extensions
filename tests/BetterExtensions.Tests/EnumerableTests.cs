@@ -45,5 +45,15 @@ namespace BetterExtensions.Tests
 
             result.All(value => value != null).Should().BeTrue();
         }
+        
+        [Test]
+        public void WhereNotNull_WhenNotContainNull_ShouldBeSame()
+        {
+            var data = _data.ToList();
+
+            var result = data.WhereNotNull();
+
+            result.Should().BeEquivalentTo(data);
+        }
     }
 }

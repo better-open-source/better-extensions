@@ -3,7 +3,6 @@
 [![GitHub license][github-license-badge]][github-license]
 [![coverage][coverage-badge]][build]
 [![nuget-version][nuget-version-badge]][nuget]
-[![nuget-version][nuget-version-beta-badge]][nuget]
 [![nuget-downloads][nuget-downloads-badge]][nuget]
 ## Overview
 
@@ -17,7 +16,7 @@ BetterExtensions just to make your coding process a little bit better.
 
 ## Installation
 
-Available on [NuGet][nuget]
+Available on [NuGet][nuget].
 
 	PM> Install-Package BetterExtensions
 
@@ -26,8 +25,7 @@ Available on [NuGet][nuget]
 [github-license-badge]: https://img.shields.io/github/license/mashape/apistatus.svg
 [github-license]: https://github.com/better-open-source/better-extensions/blob/master/LICENSE
 
-[nuget-version-badge]: https://img.shields.io/nuget/v/betterextensions
-[nuget-version-beta-badge]: https://img.shields.io/nuget/vpre/betterextensions
+[nuget-version-badge]: https://img.shields.io/nuget/v/BetterExtensions.svg
 [nuget-downloads-badge]: https://img.shields.io/nuget/dt/BetterExtensions.svg
 [nuget]: https://www.nuget.org/packages/BetterExtensions/
 

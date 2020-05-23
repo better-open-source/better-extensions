@@ -177,5 +177,20 @@ namespace BetterExtensions.Collections
             Func<TSource, IEnumerable<TCollection>> collectionSelector, 
             Func<TSource, TCollection, TResult> resultSelector) =>
             source.SelectMany(collectionSelector, resultSelector);
+        
+        
+        /// <summary>
+        /// Deconstruct an array into head and tail as it is in a functional programming languages.
+        /// </summary>
+        /// <param name="source">A sequence of values to deconstruct.</param>
+        /// <param name="head">First element of sequence.</param>
+        /// <param name="tail">Sequence without first element.</param>
+        /// <typeparam name="TSource">The type of the elements of source.</typeparam>
+        public static void Deconstruct<TSource>(this IEnumerable<TSource> source, out TSource head, out IEnumerable<TSource> tail)
+        {
+            var list = source.ToArray();
+            head = list.First();
+            tail = new List<TSource>(list.Skip(1));
+        }
     }
 }

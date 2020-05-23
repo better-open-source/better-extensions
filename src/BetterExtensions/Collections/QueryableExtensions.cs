@@ -17,7 +17,9 @@ namespace BetterExtensions.Collections
         /// <typeparam name="TSource">DBO type</typeparam>
         /// <typeparam name="TResult">Expected result type</typeparam>
         /// <returns>Sequence of selector output</returns>
-        public static IEnumerable<TResult> ToListSelect<TSource, TResult>(this IQueryable<TSource> source, Func<TSource, TResult> selector) =>
+        public static IEnumerable<TResult> ToListSelect<TSource, TResult>(
+            this IQueryable<TSource> source,
+            Func<TSource, TResult> selector) =>
             source
                 .ToList()
                 .Select(selector);

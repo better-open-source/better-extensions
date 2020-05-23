@@ -17,7 +17,9 @@ namespace BetterExtensions.Collections
         /// <param name="condition">Condition that indicates should the item be added or not</param>
         /// <typeparam name="TSource">Sequence items type</typeparam>
         /// <returns>Sequence with or not with appended item</returns>
-        public static IEnumerable<TSource> AppendWith<TSource>(this IEnumerable<TSource> source, TSource item, bool condition) =>
+        public static IEnumerable<TSource> AppendWith<TSource>(
+            this IEnumerable<TSource> source, 
+            TSource item, bool condition) =>
             condition
                 ? source.Append(item)
                 : source;
@@ -30,7 +32,9 @@ namespace BetterExtensions.Collections
         /// <param name="condition">Condition that indicates should the item be added or not</param>
         /// <typeparam name="TSource">Sequence items type</typeparam>
         /// <returns>Sequence with or not with appended item</returns>
-        public static IEnumerable<TSource> AppendWith<TSource>(this IEnumerable<TSource> source, Func<TSource> funcItem, bool condition) =>
+        public static IEnumerable<TSource> AppendWith<TSource>(
+            this IEnumerable<TSource> source, 
+            Func<TSource> funcItem, bool condition) =>
             condition
                 ? source.Append(funcItem.Invoke())
                 : source;
@@ -45,13 +49,14 @@ namespace BetterExtensions.Collections
             source.Where(item => item != null);
             
         ///<summary>Finds the index of the first item matching an expression in an enumerable.</summary>
-        ///<param name="items">The enumerable to search.</param>
+        ///<param name="source">The enumerable to search.</param>
         ///<param name="predicate">The expression to test the items against.</param>
         /// <typeparam name="TSource">Sequence items type</typeparam>
         ///<returns>The index of the first matching item, or -1 if no items match.</returns>
-        public static int IndexOf<TSource>(this IEnumerable<TSource> items, Func<TSource, bool> predicate) {
+        public static int IndexOf<TSource>(this IEnumerable<TSource> source, 
+            Func<TSource, bool> predicate) {
             var idx = 0;
-            foreach (var item in items) {
+            foreach (var item in source) {
                 if (predicate(item)) return idx;
                 idx++;
             }
@@ -65,7 +70,9 @@ namespace BetterExtensions.Collections
         /// <param name="predicate">Split sequences by predicate</param>
         /// <typeparam name="TSource">Sequence items type</typeparam>
         /// <returns>Split sequence with predicate</returns>
-        public static IEnumerable<IEnumerable<TSource>> SplitWith<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate) =>
+        public static IEnumerable<IEnumerable<TSource>> SplitWith<TSource>(
+            this IEnumerable<TSource> source, 
+            Func<TSource, bool> predicate) =>
             source.Aggregate(new List<List<TSource>> {new List<TSource>()},
                 (list, value) =>
                 {
@@ -75,5 +82,100 @@ namespace BetterExtensions.Collections
                         list.Last().Add(value);
                     return list;
                 });
+
+        /// <summary>
+        /// Projects each element of a sequence into a new form.
+        /// </summary>
+        /// <param name="source">A sequence of values to invoke a transform function on.</param>
+        /// <param name="selector">A transform function to apply to each element.</param>
+        /// <typeparam name="TSource">The type of the elements of source.</typeparam>
+        /// <typeparam name="TResult">The type of the value returned by selector.</typeparam>
+        /// <returns>An IEnumerable&lt;T&gt; whose elements are the result of invoking the transform function on each element of source.</returns>
+        public static IEnumerable<TResult> Map<TSource, TResult>(
+            this IEnumerable<TSource> source,
+            Func<TSource, TResult> selector) =>
+            source.Select(selector);
+        
+        /// <summary>
+        /// Projects each element of a sequence into a new form.
+        /// </summary>
+        /// <param name="source">A sequence of values to invoke a transform function on.</param>
+        /// <param name="selector">A transform function to apply to each element.</param>
+        /// <typeparam name="TSource">The type of the elements of source.</typeparam>
+        /// <typeparam name="TResult">The type of the value returned by selector.</typeparam>
+        /// <returns>An IEnumerable&lt;T&gt; whose elements are the result of invoking the transform function on each element of source.</returns>
+        public static IEnumerable<TResult> Map<TSource, TResult>(
+            this IEnumerable<TSource> source,
+            Func<TSource, int, TResult> selector) =>
+            source.Select(selector);
+
+        /// <summary>
+        /// Applies an accumulator function over a sequence.
+        /// </summary>
+        /// <param name="source">An IEnumerable&lt;T&gt; to aggregate over.</param>
+        /// <param name="func">An accumulator function to be invoked on each element.</param>
+        /// <typeparam name="TSource">The type of the elements of source.</typeparam>
+        /// <returns>The transformed final accumulator value.</returns>
+        public static TSource Reduce<TSource>(this IEnumerable<TSource> source, 
+            Func<TSource, TSource, TSource> func) =>
+            source.Aggregate(func);
+        
+        /// <summary>
+        /// Applies an accumulator function over a sequence. The specified seed value is used as the initial accumulator value.
+        /// </summary>
+        /// <param name="source">An IEnumerable&lt;T&gt; to aggregate over.</param>
+        /// <param name="seed">The initial accumulator value (unit).</param>
+        /// <param name="func">An accumulator function to be invoked on each element.</param>
+        /// <typeparam name="TSource">The type of the elements of source.</typeparam>
+        /// <typeparam name="TAccumulate">The type of the accumulator value.</typeparam>
+        /// <returns>The transformed final accumulator value.</returns>
+        public static TAccumulate Reduce<TSource, TAccumulate>(this IEnumerable<TSource> source, 
+            TAccumulate seed, 
+            Func<TAccumulate, TSource, TAccumulate> func) =>
+            source.Aggregate(seed, func);
+        
+        /// <summary>
+        /// Applies an accumulator function over a sequence. The specified seed value is used as the initial accumulator value, and the specified function is used to select the result value.
+        /// </summary>
+        /// <param name="source">An IEnumerable&lt;T&gt; to aggregate over.</param>
+        /// <param name="seed">The initial accumulator value (unit).</param>
+        /// <param name="func">An accumulator function to be invoked on each element.</param>
+        /// <param name="resultSelector">A function to transform the final accumulator value into the result value.</param>
+        /// <typeparam name="TSource">The type of the elements of source.</typeparam>
+        /// <typeparam name="TAccumulate">The type of the accumulator value.</typeparam>
+        /// <typeparam name="TResult">The type of the resulting value.</typeparam>
+        /// <returns>The transformed final accumulator value.</returns>
+        public static TResult Reduce<TSource, TAccumulate, TResult>(this IEnumerable<TSource> source, 
+            TAccumulate seed, 
+            Func<TAccumulate, TSource, TAccumulate> func, 
+            Func<TAccumulate, TResult> resultSelector) =>
+            source.Aggregate(seed, func, resultSelector);
+
+        /// <summary>
+        /// Projects each element of a sequence to an IEnumerable&lt;T&gt; and flattens the resulting sequences into one sequence.
+        /// </summary>
+        /// <param name="source">A sequence of values to project.</param>
+        /// <param name="selector">A transform function to apply to each element.</param>
+        /// <typeparam name="TSource">The type of the elements of source.</typeparam>
+        /// <typeparam name="TResult">The type of the elements of the resulting sequence.</typeparam>
+        /// <returns>An IEnumerable&lt;T&gt; whose elements are the result of invoking the one-to-many transform function on each element of the input sequence.</returns>
+        public static IEnumerable<TResult> Collect<TSource, TResult>(this IEnumerable<TSource> source, 
+            Func<TSource, IEnumerable<TResult>> selector) =>
+            source.SelectMany(selector);
+
+        /// <summary>
+        /// Projects each element of a sequence to an IEnumerable&lt;T&gt; and flattens the resulting sequences into one sequence.
+        /// </summary>
+        /// <param name="source">A sequence of values to project.</param>
+        /// <param name="collectionSelector">A transform function to apply to each element of the input sequence.</param>
+        /// <param name="resultSelector"></param>
+        /// <typeparam name="TSource">The type of the elements of source.</typeparam>
+        /// <typeparam name="TCollection">The type of the intermediate elements collected by collectionSelector.</typeparam>
+        /// <typeparam name="TResult">The type of the elements of the resulting sequence.</typeparam>
+        /// <returns>An IEnumerable&lt;T&gt; whose elements are the result of invoking the one-to-many transform function on each element of the input sequence.</returns>
+        public static IEnumerable<TResult> Collect<TSource, TCollection, TResult>(this IEnumerable<TSource> source, 
+            Func<TSource, IEnumerable<TCollection>> collectionSelector, 
+            Func<TSource, TCollection, TResult> resultSelector) =>
+            source.SelectMany(collectionSelector, resultSelector);
     }
 }
